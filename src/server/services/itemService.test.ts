@@ -6,7 +6,7 @@ const { findMany, create } = vi.hoisted(() => ({
 }));
 
 vi.mock('@/server/db/prisma', () => ({
-  prisma: { item: { findMany, create } },
+  default: { item: { findMany, create } },
 }));
 
 import { itemService } from '@/server/services/itemService';

@@ -1,5 +1,5 @@
 // DELETE-ME: example reference service for the Item example slice; remove when building real domain logic.
-import { prisma } from '@/server/db/prisma';
+import prisma from '@/server/db/prisma';
 import type { CreateItemInput } from '@/lib/schemas';
 import type { Item } from '@/lib/types';
 

@@ -4,13 +4,13 @@
 // runtime connection comes from the PrismaPg driver adapter (see
 // src/server/db/prisma.ts) and Migrate reads it from prisma.config.ts.
 
-// Keep the legacy `prisma-client-js` generator so the bare `@prisma/client`
-// import surface stays intact for prisma/seed.ts and src/server/services.
-// Prisma 7's `prisma-client` generator requires a custom `output` path and a
-// different import specifier, which would break those imports; preserving this
-// generator is the smallest safe, Prisma 7-supported choice.
+// The `prisma-client-js` generator emits the client into a repo-root
+// `generated/prisma` directory (via the `output` path below). Consumers import
+// `PrismaClient` from that generated path (e.g. src/server/db/prisma.ts and
+// prisma/seed.ts) instead of the bare `@prisma/client` package.
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {

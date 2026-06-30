@@ -1,0 +1,26 @@
+# Local development only. Provisions a PostgreSQL 17 database for the
+# Next.js / Prisma app. Defaults match the local DATABASE_URL; override the
+# variables below to customize. Do not use this configuration in production.
+
+services:
+  db:
+    image: postgres:17.10
+    container_name: wingdingh_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wingdingh
+      POSTGRES_PASSWORD: wingdingh_pw
+      POSTGRES_DB: wingdingh_local
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U wingdingh -d wingdingh_local']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  pgdata:

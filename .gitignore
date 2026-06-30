@@ -17,7 +17,7 @@ next-env.d.ts
 
 # Prisma
 # Keep schema and migrations tracked; ignore generated client and local DB files
-/prisma/generated/
+/generated/
 *.db
 *.db-journal
 *.sqlite
